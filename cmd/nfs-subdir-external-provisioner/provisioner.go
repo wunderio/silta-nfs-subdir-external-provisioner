@@ -151,7 +151,7 @@ func (p *nfsProvisioner) Delete(ctx context.Context, volume *v1.PersistentVolume
 	path := volume.Spec.PersistentVolumeSource.NFS.Path
 	basePath := filepath.Base(path)
 	if len(basePath) < 1 {
-		glog.Warningf("path %s does not exist", basePath)
+		logger.Info(fmt.Sprintf("warning: path %s does not exist", basePath))
 		return nil
 	}
 	oldPath := strings.Replace(path, p.path, mountPath, 1)
